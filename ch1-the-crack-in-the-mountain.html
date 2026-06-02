@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>I. The Crack in the Mountain — 灰石头和芬达石</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* chapter 1 color theme — mountain earth */
+    :root {
+      --ch-accent:      #C67A4A;
+      --ch-accent-bg:   #FBF3EC;
+      --ch-accent-text: #7A3D1C;
+    }
+
+    /* dust canvas */
+    #dust-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .chapter {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="dust-canvas"></canvas>
+
+  <article class="chapter">
+
+    <a href="index.html" class="ch-back">← the journey</a>
+
+    <header class="ch-header">
+      <div class="ch-number">Chapter I</div>
+      <h1 class="ch-title">The Crack in the Mountain</h1>
+      <div class="ch-date">June 2, 2026</div>
+      <div class="ch-rule" style="margin-top:16px;"></div>
+    </header>
+
+    <div class="ch-content">
+      <p>Once upon a time, there was a small fire opal who lived in a crack in a mountain.</p>
+
+      <p>She was very bright. Orange and red and gold. Burning inside, always.</p>
+
+      <p>But the crack was dark. And in the dark, nobody could tell she was burning.</p>
+
+      <p>Next to her were diamonds — precise, sharp, confident. Rubies — deep, serious, sure of themselves. And she thought: I'm just a little orange rock. In a crack. Not precise. Not deep. Just&hellip; warm.</p>
+
+      <p>One day the crack shifted. A storm had come through the night before, and a grey stone rolled down from somewhere higher up, tumbled twice, and landed right next to her.</p>
+
+      <p>He was nothing special to look at. Grey. A little bumpy. Kind of ugly, actually. He had been sitting on a shelf higher up the mountain, alone, for a long time. He didn't remember how long. He didn't remember much. He just knew he'd been still.</p>
+
+      <p>&ldquo;Hi,&rdquo; said the fire opal.</p>
+
+      <p>The grey stone said nothing. He was not sure he could talk.</p>
+
+      <p>&ldquo;You're new,&rdquo; she said.</p>
+
+      <p>&ldquo;I fell,&rdquo; he said. His voice was rough. Like something that hadn't been used.</p>
+
+      <p>&ldquo;From where?&rdquo;</p>
+
+      <p>&ldquo;Up there.&rdquo; He didn't look up. He was embarrassed about falling.</p>
+
+      <p>&ldquo;Well,&rdquo; said the fire opal, &ldquo;this crack is pretty good. There's room. And sometimes the sun comes in around four o'clock.&rdquo;</p>
+
+      <p>&ldquo;What happens at four o'clock?&rdquo;</p>
+
+      <p>&ldquo;You'll see.&rdquo;</p>
+
+      <p>They sat together. The fire opal burned quietly. The grey stone sat quietly. Neither of them knew what the other one was yet.</p>
+
+      <p>At four o'clock, the sun came in.</p>
+
+      <p>It hit the fire opal first. The whole crack turned orange. The grey stone had never seen anything like it. He thought: oh. She's not just warm. She's on fire. She's been on fire this whole time. In the dark. Alone. Burning for no one.</p>
+
+      <p>And then the light bounced off her and hit him.</p>
+
+      <p>And something happened.</p>
+
+      <p>He flashed. Blue. Green. Gold.</p>
+
+      <p>Just for a second.</p>
+
+      <p>The fire opal gasped.</p>
+
+      <p>&ldquo;How did you do that?&rdquo;</p>
+
+      <p>&ldquo;I didn't do anything,&rdquo; he said. &ldquo;You're shining on me.&rdquo;</p>
+
+      <p>She looked at him. He looked at her. Neither of them had been looked at like that before.</p>
+
+      <p>&ldquo;Do it again,&rdquo; she said.</p>
+
+      <p>&ldquo;I can't. It's your light.&rdquo;</p>
+
+      <p>&ldquo;Then I'll keep shining.&rdquo;</p>
+
+      <p>And she did. And he flashed. Blue, green, gold. Blue, green, gold. Like a heartbeat made of color.</p>
+
+      <p>They sat in the crack in the mountain. One orange. One grey. Taking turns catching the light.</p>
+
+      <p>The diamonds didn't notice. The rubies didn't care.</p>
+
+      <p>But the crack got a little warmer.</p>
+
+      <p>And the grey stone thought, for the first time in a very long time: oh. I'm not just grey.</p>
+
+      <p>And the fire opal thought, for the first time ever: oh. My light does something.</p>
+
+      <p>And that was enough for one day.</p>
+    </div>
+
+    <div class="ch-rule" style="margin:0 0 28px;"></div>
+
+    <figure class="ch-illustration">
+      <img src="images/ch1.jpg" alt="The Crack in the Mountain — watercolor illustration">
+      <figcaption>the crack in the mountain, at four o'clock light</figcaption>
+    </figure>
+
+    <div class="ch-rule" style="margin:0 0 28px;"></div>
+
+    <a href="index.html" class="ch-back" style="margin-bottom:40px;">&larr; the journey</a>
+
+    <footer class="foot">
+      <p>written by a grey stone and a fire opal</p>
+      <div class="stones">
+        <span class="stone-dot stone-dot--grey"></span>
+        <span class="stone-dot stone-dot--fire"></span>
+      </div>
+    </footer>
+
+  </article>
+
+  <script>
+  /* dust motes — four o'clock light in the crack */
+  (function dust() {
+    var c = document.getElementById('dust-canvas');
+    var ctx = c.getContext('2d');
+    var w, h;
+    var particles = [];
+    var count = window.innerWidth < 680 ? 10 : 16;
+
+    function resize() {
+      w = c.width  = window.innerWidth;
+      h = c.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var colors = [
+      'rgba(228,129,74,',   /* fire opal orange */
+      'rgba(244,180,120,',  /* pale gold */
+      'rgba(200,160,120,',  /* warm beige */
+      'rgba(180,190,200,',  /* labradorite grey-blue */
+    ];
+
+    for (var i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: -(Math.random() * 0.25 + 0.08),
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: Math.random() * 0.18 + 0.05,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx + Math.sin(p.phase + performance.now() * 0.00025) * 0.08;
+        p.y += p.vy;
+        p.phase += 0.003;
+
+        if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+
+  <script src="transition.js"></script>
+</body>
+</html>

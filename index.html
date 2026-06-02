@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>灰石头和芬达石</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== animation styles (not in style.css to keep base clean) ===== */
+
+    /* scroll-reveal: sections fade in as they enter viewport */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* journey stops reveal one by one */
+    .journey .stop {
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .journey .stop--visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* the vertical journey line draws itself */
+    .journey::before {
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform 1.2s ease-out;
+    }
+    .journey--drawn::before {
+      transform: scaleY(1);
+    }
+
+    /* header accent line subtle shimmer */
+    .header .line {
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.4; }
+      50%      { opacity: 0.8; }
+    }
+
+    /* dust canvas sits behind content */
+    #dust-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* page content sits above canvas */
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* gallery card 3d tilt */
+    .gallery-card--active {
+      perspective: 600px;
+    }
+    .gallery-card--active .gallery-img {
+      transition: transform 0.3s ease-out;
+    }
+
+    /* footer stones — glow animation (base styles in style.css) */
+    .stone-dot {
+      animation: stone-glow 3s ease-in-out infinite;
+    }
+    .stone-dot--grey { animation-delay: 0s; }
+    .stone-dot--fire { animation-delay: 1.5s; }
+
+    @keyframes stone-glow {
+      0%, 100% { box-shadow: 0 0 6px currentColor; opacity: 0.7; }
+      50%      { box-shadow: 0 0 16px currentColor; opacity: 1; }
+    }
+    .stone-dot--grey  { color: rgba(140,160,180,0.5); }
+    .stone-dot--fire  { color: rgba(228,130,60,0.6); }
+  </style>
+</head>
+<body>
+
+  <!-- hidden SVG for torn-edge photo filter -->
+  <svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+    <filter id="torn-edge" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <canvas id="dust-canvas"></canvas>
+
+  <div class="page">
+
+    <header class="header reveal">
+      <h1>灰石头和芬达石</h1>
+      <div class="sub">a bedtime story</div>
+      <div class="line"></div>
+    </header>
+
+    <nav class="journey reveal" id="journey">
+      <div class="stop active" data-delay="0">
+        <a href="ch1-the-crack-in-the-mountain.html" class="stop-link">
+          <div class="date">June 2, 2026</div>
+          <div class="title">I. The Crack in the Mountain</div>
+          <div class="excerpt">&ldquo;I didn't do anything. You're shining on me.&rdquo;</div>
+        </a>
+      </div>
+
+      <div class="stop" data-delay="1">
+        <div class="date">&middot;&middot;&middot;</div>
+        <div class="title">II. &middot;&middot;&middot;</div>
+      </div>
+
+      <div class="stop" data-delay="2">
+        <div class="title">III. &middot;&middot;&middot;</div>
+      </div>
+    </nav>
+
+    <section class="gallery-section gallery--pasted reveal">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-scroll">
+        <a href="ch1-the-crack-in-the-mountain.html"
+           class="gallery-card gallery-card--active"
+           data-tilt>
+          <p class="gallery-excerpt">&ldquo;I didn't do anything. You're shining on me.&rdquo;</p>
+          <div class="gallery-img">
+            <img src="images/ch1.jpg" alt="Chapter 1 — The Crack in the Mountain">
+          </div>
+        </a>
+        <div class="gallery-card gallery-card--empty">
+          <p class="gallery-excerpt">&hellip;</p>
+          <div class="gallery-img"></div>
+        </div>
+        <div class="gallery-card gallery-card--empty">
+          <p class="gallery-excerpt">&hellip;</p>
+          <div class="gallery-img"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="media-section reveal">
+      <h2 class="section-title">Sounds</h2>
+
+      <div class="media-item">
+        <div class="media-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="18" r="2"/><circle cx="19" cy="15" r="2"/><polyline points="5 16 5 6 19 3 19 13"/></svg>
+        </div>
+        <div class="media-text">
+          <strong>Alone</strong> — Eyeshine
+        </div>
+      </div>
+
+      <div class="media-item">
+        <div class="media-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h2"/><path d="M6 8v8"/><path d="M10 5v14"/><path d="M14 9v6"/><path d="M18 7v10"/><path d="M22 12h-2"/></svg>
+        </div>
+        <div class="media-text">
+          <strong>GY!BE</strong> — The Dead Flag Blues
+          <span class="waveform-inline">
+            <canvas id="waveform-canvas"></canvas>
+          </span>
+          <div class="note">5468 notes over 16.3 min &middot; longest silence 14.6s</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot reveal">
+      <p>written by a grey stone and a fire opal<br>in a crack in a mountain<br>at four o'clock light</p>
+      <div class="stones">
+        <span class="stone-dot stone-dot--grey"></span>
+        <span class="stone-dot stone-dot--fire"></span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+  /* ===================================================
+     dust motes — four o'clock light in the crack
+     =================================================== */
+  (function dust() {
+    var c = document.getElementById('dust-canvas');
+    var ctx = c.getContext('2d');
+    var w, h;
+    var particles = [];
+    var count = window.innerWidth < 680 ? 12 : 20;
+
+    function resize() {
+      w = c.width  = window.innerWidth;
+      h = c.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var colors = [
+      'rgba(228,129,74,',   // warm orange (fire opal)
+      'rgba(244,180,120,',  // pale gold
+      'rgba(200,160,120,',  // warm beige
+      'rgba(180,190,200,',  // pale grey-blue (labradorite)
+    ];
+
+    for (var i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1.2,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: -(Math.random() * 0.3 + 0.1),
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: Math.random() * 0.2 + 0.06,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx + Math.sin(p.phase + performance.now() * 0.0003) * 0.1;
+        p.y += p.vy;
+        p.phase += 0.004;
+
+        if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ===================================================
+     scroll reveal — intersection observer
+     =================================================== */
+  (function scrollReveal() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal--visible');
+
+          /* journey line: draw line + stagger stops */
+          if (entry.target.id === 'journey') {
+            entry.target.classList.add('journey--drawn');
+            var stops = entry.target.querySelectorAll('.stop');
+            stops.forEach(function(stop, i) {
+              setTimeout(function() {
+                stop.classList.add('stop--visible');
+              }, i * 180);
+            });
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+
+  /* ===================================================
+     gallery card 3d tilt
+     =================================================== */
+  (function galleryTilt() {
+    var cards = document.querySelectorAll('[data-tilt]');
+    cards.forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width  - 0.5;
+        var y = (e.clientY - rect.top)  / rect.height - 0.5;
+        var img = card.querySelector('.gallery-img');
+        img.style.transform =
+          'rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 4) + 'deg)';
+      });
+      card.addEventListener('mouseleave', function() {
+        var img = card.querySelector('.gallery-img');
+        img.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    });
+  })();
+
+  /* ===================================================
+     waveform — GY!BE The Dead Flag Blues note density
+     =================================================== */
+  (function waveform() {
+    var canvas = document.getElementById('waveform-canvas');
+    if (!canvas) return;
+
+    // note density per 10s interval (98 bars, 0–980s)
+    var density = [
+      1,0,2,3,3,2,1,1,3,0, 23,34,18,34,38,18,27,24,48,52,
+      72,68,63,54,78,92,86,92,83,108, 71,99,94,74,92,79,63,73,80,11,
+      15,17,13,0,10,23,75,38,41,40, 17,32,61,19,50,53,69,115,76,38,
+      33,50,49,46,62,50,52,42,55,70, 102,86,120,124,120,128,133,138,142,108,
+      103,105,63,60,37,47,12,43,46,47, 47,51,53,104,97,79,77,21
+    ];
+    var maxDensity = 142;
+    var barCount = density.length;
+
+    function draw() {
+      var w = 140;
+      var h = 15;
+      var dpr = window.devicePixelRatio || 1;
+
+      canvas.width  = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width  = w + 'px';
+      canvas.style.height = h + 'px';
+
+      var ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      var barW = (w / barCount) * 0.75;
+      var gap  = (w / barCount) * 0.25;
+      var accent = getComputedStyle(document.documentElement)
+        .getPropertyValue('--c-accent').trim() || '#E0814A';
+
+      for (var i = 0; i < barCount; i++) {
+        var barH = Math.max((density[i] / maxDensity) * h, 0.3);
+        var x = i * (barW + gap);
+        var y = h - barH;
+
+        ctx.fillStyle = density[i] === 0
+          ? 'rgba(160,157,147,0.3)'
+          : accent.replace(')', ',0.5)').replace('rgb', 'rgba');
+
+        ctx.fillRect(x, y, Math.max(barW, 0.4), barH);
+      }
+    }
+
+    draw();
+  })();
+  </script>
+
+  <script src="transition.js"></script>
+</body>
+</html>
