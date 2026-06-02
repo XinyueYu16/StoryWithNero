@@ -1,87 +1,29 @@
 /* ===================================================
-   cursor trail — tiny light motes follow the mouse
-   like four o'clock light touching the page
+   cursor glow — a soft warm light following the mouse
+   like four o'clock sun through a crack in the mountain
    =================================================== */
-(function cursorTrail() {
-  var canvas = document.createElement('canvas');
-  canvas.style.cssText =
-    'position:fixed;inset:0;pointer-events:none;z-index:9998;';
-  document.body.appendChild(canvas);
+(function cursorGlow() {
+  var el = document.createElement('div');
+  el.style.cssText =
+    'position:fixed;inset:0;pointer-events:none;z-index:9998;' +
+    'background:radial-gradient(circle 180px at 50% 50%,' +
+      'rgba(228,129,74,0.06) 0%,' +
+      'rgba(228,129,74,0.03) 40%,' +
+      'transparent 70%);' +
+    'opacity:0;transition:opacity 0.4s;';
+  document.body.appendChild(el);
 
-  var ctx = canvas.getContext('2d');
-  var w, h;
-  var mx = -100, my = -100;
-  var particles = [];
-  var max = 22;
-
-  function resize() {
-    w = canvas.width  = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
+  var timeout;
   document.addEventListener('mousemove', function(e) {
-    mx = e.clientX;
-    my = e.clientY;
+    el.style.background =
+      'radial-gradient(circle 180px at ' + e.clientX + 'px ' + e.clientY + 'px,' +
+        'rgba(228,129,74,0.06) 0%,' +
+        'rgba(228,129,74,0.03) 40%,' +
+        'transparent 70%)';
+    el.style.opacity = '1';
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      el.style.opacity = '0';
+    }, 1200);
   });
-
-  // also track touch for mobile
-  document.addEventListener('touchmove', function(e) {
-    mx = e.touches[0].clientX;
-    my = e.touches[0].clientY;
-  });
-
-  var colors = [
-    { r: 228, g: 129, b: 74  },  // fire opal orange
-    { r: 244, g: 180, b: 120 },  // pale gold
-    { r: 180, g: 190, b: 200 },  // labradorite grey-blue
-  ];
-
-  function spawn() {
-    if (mx < 0 || my < 0) return;
-
-    var c = colors[Math.floor(Math.random() * colors.length)];
-    particles.push({
-      x: mx + (Math.random() - 0.5) * 6,
-      y: my + (Math.random() - 0.5) * 6,
-      r: Math.random() * 1.8 + 0.8,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3 - 0.15,
-      life: 1,
-      decay: Math.random() * 0.015 + 0.012,
-      color: c
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-
-    if (mx > -50 && Math.random() < 0.5) spawn();
-    if (mx > -50 && Math.random() < 0.3) spawn();
-
-    for (var i = particles.length - 1; i >= 0; i--) {
-      var p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.life -= p.decay;
-
-      if (p.life <= 0) {
-        particles.splice(i, 1);
-        continue;
-      }
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + p.color.r + ',' + p.color.g + ',' + p.color.b + ',' + (p.life * 0.5).toFixed(2) + ')';
-      ctx.fill();
-    }
-
-    if (particles.length > max) {
-      particles.splice(0, particles.length - max);
-    }
-
-    requestAnimationFrame(draw);
-  }
-  draw();
 })();
