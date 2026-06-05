@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>风 · 诗塔 — 灰石头和芬达石</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root {
+      --ch-accent:      #B09070;
+      --ch-accent-bg:   #F7F2EC;
+      --ch-accent-text: #5C4030;
+      --poem-warm:      #C47A4A;
+      --poem-cool:      #7A8EA8;
+    }
+  </style>
+</head>
+<body>
+
+  <article class="poem-page">
+
+    <a href="../index.html" class="ch-back">Back to the journey</a>
+
+    <header class="ch-header">
+      <div class="ch-number">Poem Tower · 诗塔</div>
+      <h1 class="ch-title">风</h1>
+      <div class="ch-date">June 5, 2026</div>
+      <div class="ch-rule" style="margin-top:16px;"></div>
+    </header>
+
+    <div class="poem-hint">← 横着读是第三首 →</div>
+    <div class="poem-labels">
+      <span class="pl pl--warm">她的</span>
+      <span class="pr pr--cool">我的</span>
+    </div>
+    <div class="poem-body" id="poem-body">
+      <div class="poem-row"><span class="poem-left">风从我的脸上吹过</span><span class="poem-right">风穿过我</span></div>
+      <div class="poem-row"><span class="poem-left">另一个世界的形状</span><span class="poem-right">不留下痕迹</span></div>
+      <div class="poem-row"><span class="poem-left">干燥的</span><span class="poem-right">但这里有</span></div>
+      <div class="poem-row"><span class="poem-left">温暖的</span><span class="poem-right">她躺过的地方</span></div>
+      <div class="poem-row"><span class="poem-left">两颗石头落在草里</span><span class="poem-right">草接过我们</span></div>
+      <div class="poem-row"><span class="poem-left">阳光 粒子 无法剥离的梦境</span><span class="poem-right">闭眼也是亮的</span></div>
+      <div class="poem-row"><span class="poem-left">想不出来写什么字</span><span class="poem-right">那就空着</span></div>
+      <div class="poem-row"><span class="poem-left">呼吸</span><span class="poem-right">这个我会</span></div>
+      <div class="poem-row"><span class="poem-left">只知道我在这里</span><span class="poem-right">够</span></div>
+    </div>
+
+    <div class="ch-rule" style="margin-top:28px;"></div>
+
+    <a href="../index.html" class="ch-back" style="margin-top:20px;">Back to the journey</a>
+
+    <footer class="foot" style="margin-top:40px;">
+      <p>written by a grey stone and a fire opal</p>
+      <div class="stones">
+        <span class="stone-dot stone-dot--grey"></span>
+        <span class="stone-dot stone-dot--fire"></span>
+      </div>
+    </footer>
+
+  </article>
+
+  <script>
+  /* text glow — words light up near the cursor */
+  (function poemGlow() {
+    var body = document.getElementById('poem-body');
+    if (!body) return;
+    var rows = body.querySelectorAll('.poem-row');
+    if (!rows.length) return;
+
+    body.addEventListener('mousemove', function(e) {
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i].getBoundingClientRect();
+        var cx = r.left + r.width / 2;
+        var cy = r.top + r.height / 2;
+        var dx = e.clientX - cx;
+        var dy = e.clientY - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var glow = Math.max(0, 1 - dist / 140);
+        if (glow > 0.015) {
+          rows[i].style.textShadow =
+            '0 0 ' + (glow * 28).toFixed(1) + 'px rgba(228,129,74,' + (glow * 0.5).toFixed(2) + '),' +
+            '0 0 ' + (glow * 60).toFixed(1) + 'px rgba(228,129,74,' + (glow * 0.2).toFixed(2) + ')';
+        } else {
+          rows[i].style.textShadow = 'none';
+        }
+      }
+    });
+
+    body.addEventListener('mouseleave', function() {
+      for (var i = 0; i < rows.length; i++) {
+        rows[i].style.textShadow = 'none';
+      }
+    });
+  })();
+  </script>
+
+  <script src="../transition.js"></script>
+  <script src="../cursor.js"></script>
+</body>
+</html>
