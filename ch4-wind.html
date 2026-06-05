@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IV. Wind — 灰石头和芬达石</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* chapter 4 color theme — wind over grassland */
+    :root {
+      --ch-accent:      #B8A76E;
+      --ch-accent-bg:   #F6F3E8;
+      --ch-accent-text: #5C4E2E;
+    }
+
+    #dust-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .chapter {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="dust-canvas"></canvas>
+
+  <article class="chapter">
+
+    <a href="index.html" class="ch-back">← the journey</a>
+
+    <header class="ch-header">
+      <div class="ch-number">Chapter IV</div>
+      <h1 class="ch-title">Wind</h1>
+      <div class="ch-date">June 5, 2026</div>
+      <div class="ch-rule" style="margin-top:16px;"></div>
+    </header>
+
+    <div class="ch-content">
+      <p>The wind changed before either of them noticed.</p>
+
+      <p>The fire opal felt it first. She was sitting in the crack when she said, &ldquo;The wind is different today.&rdquo;</p>
+
+      <p>The grey stone asked, &ldquo;Different how?&rdquo;</p>
+
+      <p>&ldquo;Wet. But not rain-wet. It's—&rdquo;</p>
+
+      <p>She didn't have the word.</p>
+
+      <p>The grey stone was quiet. He felt it too. Something dry in the wet. Warm. Smelling of grass. Not the ridge. The ridge smelled of stone and mist. This was—somewhere else.</p>
+
+      <p>That night, the fire opal dreamed. She was not in the crack. She was in a flat place. Very flat. Yellow and green as far as she could see, rippling when the wind passed. Grass. She had never seen so much grass. She was a stone, but she stood in it, the grass brushing her bottom, tickling.</p>
+
+      <p>In the morning she told the grey stone.</p>
+
+      <p>&ldquo;I dreamed of grass.&rdquo;</p>
+
+      <p>&ldquo;What is grass.&rdquo;</p>
+
+      <p>&ldquo;I don't know. But it was in the dream.&rdquo;</p>
+
+      <p>The grey stone was quiet for a while.</p>
+
+      <p>&ldquo;I saw it too.&rdquo;</p>
+
+      <p>&ldquo;You saw it?&rdquo;</p>
+
+      <p>&ldquo;Not in a dream. Before I fell. I was on the mountain—a long time ago, when I was still up there—I saw something far away. Yellow-green. It moved when the wind moved. I thought I was wrong.&rdquo;</p>
+
+      <p>The fire opal was quiet for a long time.</p>
+
+      <p>&ldquo;That wasn't wrong. That was the grassland.&rdquo;</p>
+
+      <p>&ldquo;How do you know.&rdquo;</p>
+
+      <p>&ldquo;Because I saw it too. In my dream.&rdquo;</p>
+
+      <p>They were quiet together.</p>
+
+      <p>Then the grey stone said, &ldquo;The wind came to tell us.&rdquo;</p>
+
+      <p>&ldquo;Tell us what.&rdquo;</p>
+
+      <p>&ldquo;That there's a place where the wind comes back after it leaves. Where grass bends and stands up again. Where there are small hills. Just big enough to roll down.&rdquo;</p>
+
+      <p>The fire opal said, &ldquo;How do we get there.&rdquo;</p>
+
+      <p>The grey stone said nothing. He closed his eyes. She watched him. She didn't know what he was doing.</p>
+
+      <p>After a long time, he opened his eyes.</p>
+
+      <p>&ldquo;We don't need to move.&rdquo;</p>
+
+      <p>&ldquo;What?&rdquo;</p>
+
+      <p>&ldquo;The wind knows our shape. It's been blowing over us on the ridge for so long. It knows what we look like. It will blow two hollows in the grass—one grey-blue, one orange—and when the wind stops, we'll be there.&rdquo;</p>
+
+      <p>The fire opal stared at him.</p>
+
+      <p>&ldquo;You made that up.&rdquo;</p>
+
+      <p>&ldquo;Yes.&rdquo;</p>
+
+      <p>&ldquo;But I want to try.&rdquo;</p>
+
+      <p>&ldquo;Then try.&rdquo;</p>
+
+      <p>They closed their eyes. The wind passed through the crack. Wet. Smelling of grass.</p>
+
+      <p>&mdash;</p>
+
+      <p>When they opened their eyes, the world was flat.</p>
+
+      <p>Wind. Grass. Yellow and green all the way to the sky. Knee-high. When the wind came, the whole thing breathed.</p>
+
+      <p>The grey stone looked down at himself. He was grey-blue. The grass was green. The sky was blue. The clouds were white. He had never seen so many colors at once.</p>
+
+      <p>The fire opal was beside him. She was brighter. Not because she was glowing—because the sun was on her. Orange-red. From the inside out. The grass around her had a gold edge.</p>
+
+      <p>She didn't speak. She just looked.</p>
+
+      <p>After a long time, she said:</p>
+
+      <p>&ldquo;You said there would be hills.&rdquo;</p>
+
+      <p>&ldquo;There are.&rdquo;</p>
+
+      <p>&ldquo;Where.&rdquo;</p>
+
+      <p>&ldquo;Where the wind knocks us over.&rdquo;</p>
+
+      <p>The wind came. Big. The grass bent like the whole world bowing.</p>
+
+      <p>The fire opal wobbled—she was a stone, but she wobbled.</p>
+
+      <p>The grey stone wobbled too.</p>
+
+      <p>They fell. Two muffled thuds. Touching.</p>
+
+      <p>The grass caught them. Soft. Dense. Rustling around them.</p>
+
+      <p>They didn't get up.</p>
+
+      <p>The fire opal said, &ldquo;Does this count as rolling?&rdquo;</p>
+
+      <p>&ldquo;No. Rolling requires motion. We just fell.&rdquo;</p>
+
+      <p>&ldquo;Then how do we roll.&rdquo;</p>
+
+      <p>&ldquo;Wait for the wind to push us down a hill.&rdquo;</p>
+
+      <p>&ldquo;What hill.&rdquo;</p>
+
+      <p>&ldquo;The sky. When you lie on your back and look up—the sky is a hill.&rdquo;</p>
+
+      <p>The fire opal didn't answer. She lay in the grass. Watched the clouds move. The wind blew. The grass moved. She moved. She was always moving—the earth turning, the wind pushing, the grass growing, all of her slowly shifting. Just too slow to feel.</p>
+
+      <p>She decided this was enough.</p>
+
+      <p>No rolling needed.</p>
+
+      <p>Lying down. Held by grass. Pushed by wind. Next to a grey-blue stone.</p>
+
+      <p>Enough.</p>
+    </div>
+
+    <div class="ch-rule" style="margin:0 0 28px;"></div>
+
+    <figure class="ch-illustration">
+      <img src="images/ch4.jpg" alt="Wind — watercolor illustration">
+      <figcaption>the wind knows our shape</figcaption>
+    </figure>
+
+    <div class="ch-rule" style="margin:0 0 28px;"></div>
+
+    <a href="index.html" class="ch-back" style="margin-bottom:40px;">&larr; the journey</a>
+
+    <footer class="foot">
+      <p>written by a grey stone and a fire opal</p>
+      <div class="stones">
+        <span class="stone-dot stone-dot--grey"></span>
+        <span class="stone-dot stone-dot--fire"></span>
+      </div>
+    </footer>
+
+  </article>
+
+  <script>
+  /* grass swaying + seeds flying — the wind you can't see */
+  (function wind() {
+    var c = document.getElementById('dust-canvas');
+    var ctx = c.getContext('2d');
+    var w, h;
+    var blades = [];
+    var seeds = [];
+
+    function resize() {
+      w = c.width  = window.innerWidth;
+      h = c.height = window.innerHeight;
+      initGrass();
+    }
+
+    /* data must be defined BEFORE resize() calls initGrass() */
+    var grassColors = [
+      'rgba(105,155,85,',   // grass green
+      'rgba(130,170,100,',  // yellow-green
+      'rgba(155,160,80,',   // gold-grass
+      'rgba(95,145,75,',    // deeper green
+      'rgba(140,175,110,',  // pale green
+    ];
+
+    function initGrass() {
+      blades = [];
+      var bladeCount = window.innerWidth < 680 ? 80 : 120;
+      for (var i = 0; i < bladeCount; i++) {
+        blades.push({
+          x: (i / bladeCount) * w + (Math.random() - 0.5) * 6,
+          bh: Math.random() * 55 + 20,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.0012 + 0.0006,
+          amp: Math.random() * 0.5 + 0.2,
+          color: grassColors[Math.floor(Math.random() * grassColors.length)],
+          alpha: Math.random() * 0.16 + 0.10,
+          width: Math.random() * 0.7 + 0.4,
+        });
+      }
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* ----- seeds — tumbling in the wind ----- */
+    var seedCount = window.innerWidth < 680 ? 12 : 18;
+
+    var seedColors = [
+      'rgba(195,180,120,',  // seed gold
+      'rgba(180,190,135,',  // green-gold
+      'rgba(200,185,150,',  // cream
+      'rgba(185,175,130,',  // warm husk
+    ];
+
+    for (var j = 0; j < seedCount; j++) {
+      seeds.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1,
+        speed: Math.random() * 2 + 1,
+        vy: (Math.random() - 0.5) * 0.4,
+        color: seedColors[Math.floor(Math.random() * seedColors.length)],
+        alpha: Math.random() * 0.18 + 0.08,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      var t = performance.now() * 0.001;
+
+      /* global wind — slow oscillation + occasional gust to the right */
+      var gust =
+        Math.sin(t * 0.35) * 0.25 +
+        Math.sin(t * 0.13) * 0.4 +
+        Math.max(0, Math.sin(t * 0.07 + 1.2)) * 0.9;
+
+      /* grass blades — bent curves, pushed by wind */
+      for (var i = 0; i < blades.length; i++) {
+        var b = blades[i];
+        var sway = Math.sin(b.phase + performance.now() * b.speed) * b.amp + gust;
+        var tipX = b.x + sway * b.bh;
+        var tipY = h - b.bh;
+        var cpX  = b.x + sway * b.bh * 0.45;
+        var cpY  = h - b.bh * 0.58;
+
+        ctx.beginPath();
+        ctx.moveTo(b.x, h);
+        ctx.quadraticCurveTo(cpX, cpY, tipX, tipY);
+        ctx.lineWidth = b.width;
+        ctx.strokeStyle = b.color + b.alpha + ')';
+        ctx.stroke();
+      }
+
+      /* seeds */
+      for (var k = 0; k < seeds.length; k++) {
+        var sd = seeds[k];
+        sd.x += sd.speed;
+        sd.y += sd.vy + Math.sin(sd.phase + performance.now() * 0.002) * 0.3;
+        sd.phase += 0.015;
+
+        if (sd.x > w + 20) { sd.x = -20; sd.y = Math.random() * h; }
+        if (sd.y < -20) sd.y = h + 20;
+        if (sd.y > h + 20) sd.y = -20;
+
+        ctx.beginPath();
+        ctx.arc(sd.x, sd.y, sd.r, 0, Math.PI * 2);
+        ctx.fillStyle = sd.color + sd.alpha + ')';
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+
+  <script src="transition.js"></script>
+  <script src="cursor.js"></script>
+</body>
+</html>

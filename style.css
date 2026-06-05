@@ -655,7 +655,23 @@ a {
   }
 
   .gallery-card { width: 280px; }
-  .gallery-scroll { gap: 20px; }
+  .gallery-scroll {
+    gap: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-border) transparent;
+    padding-bottom: 10px;
+  }
+  .gallery-scroll::-webkit-scrollbar {
+    display: block;
+    height: 5px;
+  }
+  .gallery-scroll::-webkit-scrollbar-thumb {
+    background: var(--c-border);
+    border-radius: 10px;
+  }
+  .gallery-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
   .gallery-excerpt { font-size: 13px; }
 
   .section-title {

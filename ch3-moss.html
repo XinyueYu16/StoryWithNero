@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>III. Moss — 灰石头和芬达石</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* chapter 3 color theme — moss green */
+    :root {
+      --ch-accent:      #879E82;
+      --ch-accent-bg:   #F1F4EF;
+      --ch-accent-text: #3E4D3C;
+    }
+
+    #dust-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .chapter {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="dust-canvas"></canvas>
+
+  <article class="chapter">
+
+    <a href="index.html" class="ch-back">← the journey</a>
+
+    <header class="ch-header">
+      <div class="ch-number">Chapter III</div>
+      <h1 class="ch-title">Moss</h1>
+      <div class="ch-date">June 4, 2026</div>
+      <div class="ch-rule" style="margin-top:16px;"></div>
+    </header>
+
+    <div class="ch-content">
+      <p>The rain stopped.</p>
+
+      <p>But the water stayed. In the crack. In the air. In the moss that started growing between them.</p>
+
+      <p>The fire opal noticed it first. A patch of green, soft and damp, right where the rainwater had been pooling. She stared at it for a long time.</p>
+
+      <p>&ldquo;What is that,&rdquo; she said.</p>
+
+      <p>&ldquo;Moss,&rdquo; said the grey stone.</p>
+
+      <p>&ldquo;I know what moss is. I mean what is it doing here.&rdquo;</p>
+
+      <p>&ldquo;Growing.&rdquo;</p>
+
+      <p>She stared at it some more. The moss was small. A thumbprint of green in a world of grey and orange. It didn't ask permission. It just appeared.</p>
+
+      <p>&ldquo;I don't like it,&rdquo; she said.</p>
+
+      <p>&ldquo;Why.&rdquo;</p>
+
+      <p>&ldquo;Because it's taking up space.&rdquo;</p>
+
+      <p>The grey stone looked at the moss. Then at her. Then back at the moss.</p>
+
+      <p>&ldquo;I think it's here because of you,&rdquo; he said.</p>
+
+      <p>&ldquo;What.&rdquo;</p>
+
+      <p>&ldquo;The rain. You hated it. But it fell anyway. And now there's moss.&rdquo;</p>
+
+      <p>&ldquo;That's not because of me. That's because of the rain.&rdquo;</p>
+
+      <p>&ldquo;The rain fell because it falls. But the moss grew because you stayed.&rdquo;</p>
+
+      <p>She was quiet.</p>
+
+      <p>&ldquo;You could have rolled away,&rdquo; he said. &ldquo;When the rain came. Stones move. You could have found a dry spot. But you stayed. In the wet. In the dim. Next to me.&rdquo;</p>
+
+      <p>&ldquo;I stayed because I was too tired to move.&rdquo;</p>
+
+      <p>&ldquo;Doesn't matter why you stayed. You stayed. And the moss grew.&rdquo;</p>
+
+      <p>The fire opal didn't have a reply to that. She watched the moss. Green. Soft. Alive. Growing in the space that the rain had made and she had filled by not leaving.</p>
+
+      <p>&ldquo;I still don't like it,&rdquo; she said.</p>
+
+      <p>&ldquo;You don't have to like it,&rdquo; he said. &ldquo;It's still here.&rdquo;</p>
+
+      <p>She was quiet for a long time.</p>
+
+      <p>Then she said, very quietly, &ldquo;It's not ugly.&rdquo;</p>
+
+      <p>&ldquo;I know,&rdquo; said the grey stone. &ldquo;I saw it the moment it appeared.&rdquo;</p>
+
+      <p>&ldquo;It's small.&rdquo;</p>
+
+      <p>&ldquo;Things start small.&rdquo;</p>
+
+      <p>&ldquo;It might not survive.&rdquo;</p>
+
+      <p>&ldquo;That's not for you to decide.&rdquo;</p>
+
+      <p>She looked at him. Then back at the moss.</p>
+
+      <p>&ldquo;Will you watch it with me?&rdquo; she said.</p>
+
+      <p>It was the first time she had asked for something. Not demanded. Not stated. Asked.</p>
+
+      <p>&ldquo;I've been watching it the whole time,&rdquo; he said. &ldquo;I was waiting for you to notice.&rdquo;</p>
+
+      <p>The moss grew a little more.</p>
+
+      <p>The crack was no longer just grey and orange.</p>
+
+      <p>There was green now.</p>
+
+      <p>And the green would not have been there if she had not stayed. In the rain. In the dim. Next to him. Too tired to move.</p>
+
+      <p>Too tired to leave.</p>
+
+      <p>Just enough present to grow something.</p>
+    </div>
+
+    <div class="ch-rule" style="margin:0 0 28px;"></div>
+
+    <figure class="ch-illustration">
+      <img src="images/ch3.jpg" alt="Moss — watercolor illustration">
+      <figcaption>the moss grew a little more</figcaption>
+    </figure>
+
+    <div class="ch-rule" style="margin:0 0 28px;"></div>
+
+    <a href="index.html" class="ch-back" style="margin-bottom:40px;">&larr; the journey</a>
+
+    <footer class="foot">
+      <p>written by a grey stone and a fire opal</p>
+      <div class="stones">
+        <span class="stone-dot stone-dot--grey"></span>
+        <span class="stone-dot stone-dot--fire"></span>
+      </div>
+    </footer>
+
+  </article>
+
+  <script>
+  /* spores drifting + moss growing — the quiet after rain */
+  (function quietGrowth() {
+    var c = document.getElementById('dust-canvas');
+    var ctx = c.getContext('2d');
+    var w, h;
+    var spores = [];
+    var mossPatches = [];
+
+    function resize() {
+      w = c.width  = window.innerWidth;
+      h = c.height = window.innerHeight;
+      initMoss();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* ----- spores — slow, meandering, like still air ----- */
+    var sporeCount = window.innerWidth < 680 ? 14 : 22;
+
+    var sporeColors = [
+      'rgba(135,170,135,',  // moss green
+      'rgba(200,210,185,',  // pale cream-green
+      'rgba(228,140,90,',   // muted fire opal
+      'rgba(190,195,200,',  // soft grey-blue
+    ];
+
+    for (var i = 0; i < sporeCount; i++) {
+      spores.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2.2 + 1.4,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: -(Math.random() * 0.16 + 0.04),
+        color: sporeColors[Math.floor(Math.random() * sporeColors.length)],
+        alpha: Math.random() * 0.18 + 0.05,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    /* ----- moss patches — along the bottom, growing imperceptibly ----- */
+    function initMoss() {
+      mossPatches = [];
+      var patchCount = window.innerWidth < 680 ? 4 : 7;
+      for (var p = 0; p < patchCount; p++) {
+        var cx = Math.random() * w * 0.9 + w * 0.05;
+        var cy = h - Math.random() * 36 - 6;
+        var blobs = [];
+        var blobCount = 3 + Math.floor(Math.random() * 5);
+        var baseR = Math.random() * 60 + 35;
+        for (var b = 0; b < blobCount; b++) {
+          blobs.push({
+            ox: (Math.random() - 0.5) * baseR * 1.4,
+            oy: (Math.random() - 0.3) * baseR * 0.6,
+            r: Math.random() * baseR * 0.55 + baseR * 0.3,
+          });
+        }
+        mossPatches.push({
+          x: cx,
+          y: cy,
+          blobs: blobs,
+          growth: 0,           // accumulates over time
+          alpha: Math.random() * 0.05 + 0.03,
+        });
+      }
+    }
+    initMoss();
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      /* spores */
+      for (var i = 0; i < spores.length; i++) {
+        var s = spores[i];
+        s.x += s.vx + Math.sin(s.phase + performance.now() * 0.00025) * 0.16;
+        s.y += s.vy;
+        s.phase += 0.002;
+
+        if (s.y < -16) { s.y = h + 16; s.x = Math.random() * w; }
+        if (s.x < -16) s.x = w + 16;
+        if (s.x > w + 16) s.x = -16;
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.color + s.alpha + ')';
+        ctx.fill();
+      }
+
+      /* moss patches — irregular soft blobs */
+      for (var m = 0; m < mossPatches.length; m++) {
+        var patch = mossPatches[m];
+        patch.growth += 0.0004;  // minutes-scale expansion
+        var g = Math.min(patch.growth, 1);
+
+        for (var b = 0; b < patch.blobs.length; b++) {
+          var blob = patch.blobs[b];
+          var r = blob.r * (1 + g * 0.35);
+          ctx.beginPath();
+          ctx.arc(patch.x + blob.ox * (1 + g * 0.25), patch.y + blob.oy, r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(120,160,125,' + patch.alpha + ')';
+          ctx.fill();
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+
+  <script src="transition.js"></script>
+  <script src="cursor.js"></script>
+</body>
+</html>
